@@ -1,0 +1,42 @@
+<!doctype html>
+<html ng-app="project">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.min.js">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.min.js">
+    </script>
+    <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/0.9.0/angularfire.min.js"></script>
+    <script src="/resources/project.js"></script>
+</head>
+<body>
+<h2>JavaScript Projects</h2>
+<div ng-controller="ProjectController as projectCtrl">
+    {{projectCtrl.message}}
+
+</div>
+
+<div ng-controller = "ListSongController as songCtrl">
+    <ul>
+        <li ng-repeat = "song in songCtrl.songs">
+            {{song}}
+            <iframe type="text/html" width="640" height="390"
+                    ng-src="{{songCtrl.getUrl(song)}}"
+                    frameborder="0"></iframe>
+        </li>
+    </ul>
+    <iframe type="text/html" width="640" height="390"
+            ng-src="{{songCtrl.fakeAddress}}"
+            frameborder="0"></iframe>
+    <form name="add-song-form" ng-controller = "FormController as formCtrl"
+            ng-submit="formCtrl.addSong(songCtrl)">
+        <input type="text" ng-model="formCtrl.song.name"/>
+        <input type="url" ng-model="formCtrl.song.url"/>
+        <input type="number" ng-model="formCtrl.song.initRating"/>
+        <input type="submit" value="submit"/>
+        {{formCtrl.song.name}}
+    </form>
+</div>
+</body>
+</html>
