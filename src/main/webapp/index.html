@@ -13,7 +13,6 @@
 <body>
 <h2>JavaScript Projects</h2>
 <div ng-controller="ProjectController as projectCtrl">
-    {{projectCtrl.message}}
 
 </div>
 
@@ -21,14 +20,14 @@
     <ul>
         <li ng-repeat = "song in songCtrl.songs">
             {{song}}
-            <iframe type="text/html" width="640" height="390"
+            <iframe type="text/html" width="0" height="0"
                     ng-src="{{songCtrl.getUrl(song)}}"
                     frameborder="0"></iframe>
         </li>
+        <iframe type="text/html" width="600" height="300"
+                ng-src="https://www.youtube.com/v/dO6WmM7w93I?version=3&enablejsapi=1"
+                frameborder="0"></iframe>
     </ul>
-    <iframe type="text/html" width="640" height="390"
-            ng-src="{{songCtrl.fakeAddress}}"
-            frameborder="0"></iframe>
     <form name="add-song-form" ng-controller = "FormController as formCtrl"
             ng-submit="formCtrl.addSong(songCtrl)">
         <input type="text" ng-model="formCtrl.song.name"/>

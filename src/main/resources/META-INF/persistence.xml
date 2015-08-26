@@ -8,6 +8,7 @@
         <description>
             Persistence unit for the JPA tutorial of the Hibernate Getting Started Guide
         </description>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <class>model.entity.Song</class>
         <class>model.entity.User</class>

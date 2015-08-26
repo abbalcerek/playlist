@@ -40,16 +40,16 @@ hs_err_pid*
 # if you remove the above rule, at least ignore the following:
 
 # User-specific stuff:
-# .idea/workspace.xml
-# .idea/tasks.xml
-# .idea/dictionaries
+ .idea/workspace.xml
+ .idea/tasks.xml
+ .idea/dictionaries
 
 # Sensitive or high-churn files:
-# .idea/dataSources.ids
-# .idea/dataSources.xml
-# .idea/sqlDataSources.xml
-# .idea/dynamic.xml
-# .idea/uiDesigner.xml
+ .idea/dataSources.ids
+ .idea/dataSources.xml
+ .idea/sqlDataSources.xml
+ .idea/dynamic.xml
+ .idea/uiDesigner.xml
 
 # Gradle:
 # .idea/gradle.xml
@@ -79,6 +79,7 @@ crashlytics.properties
 crashlytics-build.properties
 ### Maven template
 target/
+*/tartet/**
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
