@@ -7,7 +7,7 @@
 
     app.constant('conf', {
         address : 'localhost',
-        port : 8081,
+        port : 8080,
         protocol : 'http://'
     });
 
