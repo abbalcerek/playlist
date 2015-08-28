@@ -11,6 +11,7 @@ import services.SongService;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Adam on 22/08/2015.
@@ -42,5 +43,10 @@ public class SongController {
     @RequestMapping(path = "/songs", headers = "Accept=application/json")
     public List<Song> songs() {
         return songRepository.findAll();
+    }
+
+    @RequestMapping(path = "/nextSong", headers = "Accept=application/json")
+    public String nextSong() {
+        return "weRHyjj34ZE";
     }
 }

@@ -51,5 +51,41 @@
         };
     });
 
+    app.directive("youtube", function($window) {
+        return {
+            restrict: "E",
+
+            template: '<div></div>',
+
+            link: function(scope, element, attrs) {
+                var tag = document.createElement('script');
+                tag.src = "https://www.youtube.com/iframe_api";
+                var firstScriptTag = document.getElementsByTagName('script')[0];
+                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+                var player;
+
+                $window.onYouTubeIframeAPIReady = function() {
+                    player = new YT.Player(element.children()[0], {
+                        height: '390',
+                        width: '640',
+                        videoId: 'M7lc1UVf-VE'
+                    });
+                };
+            },
+        }
+    });
+
 })();
 
+//var nextSongId;
+//var ctrl;
+//this.nextSong = function() {
+//    $http({
+//        method: 'GET',
+//        url: conf.protocol + conf.address + ':' + conf.port + "/service/addSong",
+//        params: ctrl.song
+//    }).success(function(data) {
+//        ctrl.nextSongId = data;
+//    })
+//}
