@@ -3,9 +3,11 @@ package controllers;
 import model.entity.Song;
 import model.entity.Url;
 import model.repositories.GenericRepository;
+import model.repositories.SongRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import services.SongService;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -19,12 +21,17 @@ public class SongController {
     @Inject
     private GenericRepository repository;
 
+    @Inject
+    private SongService songService;
+
+    @Inject
+    private SongRepository songRepository;
+
     @RequestMapping(path = "/addSong", headers="Accept=application/json")
     public List<Song> addSong(@RequestParam(required = false) Integer initRating,
                               @RequestParam(required = false) String url,
                               @RequestParam(required = false) String name) {
-        repository.addSong(name, url);
-        return repository.all(Song.class);
+        return songService.addSong(name, url);
     }
 
     @RequestMapping(path = "/urls", headers = "Accept=application/json")
@@ -34,6 +41,6 @@ public class SongController {
 
     @RequestMapping(path = "/songs", headers = "Accept=application/json")
     public List<Song> songs() {
-        return repository.all(Song.class);
+        return songRepository.findAll();
     }
 }

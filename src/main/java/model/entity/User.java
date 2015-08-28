@@ -56,4 +56,13 @@ public class User implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return new org.apache.commons.lang3.builder.ToStringBuilder(this)
+                .append("id", id)
+                .append("ip", ip)
+                .append("name", name)
+                .toString();
+    }
 }

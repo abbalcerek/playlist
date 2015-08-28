@@ -2,6 +2,7 @@ package controllers;
 
 import model.entity.User;
 import model.repositories.GenericRepository;
+import model.repositories.UserRepository;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,9 @@ public class UserController {
     @Inject
     private GenericRepository repository;
 
+    @Inject
+    private UserRepository userRepository;
+
     @RequestMapping(path = "/user/{ip}")
     private User userByIp(@PathVariable String ip) {
         if (StringUtils.isNotBlank(ip)) return null;
@@ -35,5 +39,6 @@ public class UserController {
     @RequestMapping(path = "/addCurrentUser")
     private void userByIp(HttpServletRequest request, @RequestParam String name) {
         repository.addUserOptional(new User(request.getRemoteAddr(), name));
+//        userRepository.hello();
     }
 }

@@ -17,6 +17,9 @@ package controllers;
 import com.google.common.collect.Lists;
 import model.Message;
 import model.entity.User;
+import model.repositories.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import services.Service;
@@ -31,24 +34,14 @@ import java.util.List;
 @RestController
 public class Controller {
 
+    private Logger logger = LoggerFactory.getLogger(Controller.class);
 
     @Inject
     private Service service;
 
-    @RequestMapping(path = "/a")
-    public String message() {
-        return "Hello world from controller";
-    }
+    @Inject
+    UserRepository userRepository;
 
-    @RequestMapping(path = "/b", method = RequestMethod.GET, headers="Accept=application/json")
-    public Message message1() {
-        return new Message("a", "b");
-    }
-
-    @RequestMapping(path = "/c", method = RequestMethod.GET, headers="Accept=application/json")
-    public List<Message> messages() {
-        return service.messages();
-    }
 
     @RequestMapping(path = "/d/{name}/{text}", method = RequestMethod.GET, headers="Accept=application/json")
     public Message myMessage(@PathVariable String name, @PathVariable String text) {
@@ -75,35 +68,12 @@ public class Controller {
 //        return result;
     }
 
-
-    /*
-    $.ajax({
-        url: 'localhost:8080/rb',
-        type: 'POST',
-        contentType:'application/json',
-        data: JSON.stringify({
-            name:"Bob",
-            text:"text",
-            rating: 1
-        }),
-        dataType:'json',
-        success : function() {
-            alert( "success" );
-        },
-        fail: function(e) {
-            alert( e );
-        },
-         error: function(xhr, ajaxOptions, thrownError) {
-      //On error do this
-        if (xhr.status == 200) {
-
-            alert(ajaxOptions);
-        }
-        else {
-            alert(xhr.status);
-            alert(thrownError);
-        }
+    @RequestMapping(path = "/rep/{id}", method = RequestMethod.GET, headers="Accept=application/json")
+    public User user(@PathVariable Long id) {
+        User result = userRepository.findOne(id);
+        List<User> users = userRepository.findByName(result.getName());
+        logger.debug("users: {}", users);
+        return result;
     }
-    });
-    */
+
 }
